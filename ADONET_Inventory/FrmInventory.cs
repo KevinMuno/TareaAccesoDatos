@@ -35,6 +35,8 @@ namespace ADONET_Inventory
             var inventory = new Inventory
             {
                 PetName = txtNameInv.Text,
+                Color = txtColor.Text,
+               
             };
             _inventoryRepository.Add(inventory);
 
@@ -57,6 +59,7 @@ namespace ADONET_Inventory
             {
                 int selectedRowIndex = dgvInventory.SelectedRows[0].Index;
                 int id = Convert.ToInt32(dgvInventory.Rows[selectedRowIndex].Cells["ID"].Value);
+               
 
                 _inventoryRepository.Delete(id);
                 LoadInventory();
@@ -74,6 +77,7 @@ namespace ADONET_Inventory
             {
                 int selectedRowIndex = dgvInventory.SelectedRows[0].Index;
                 int id = Convert.ToInt32(dgvInventory.Rows[selectedRowIndex].Cells["ID"].Value);
+           
 
                 _inventoryRepository.Delete(id);
                 LoadInventory();
