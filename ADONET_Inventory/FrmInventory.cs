@@ -34,7 +34,7 @@ namespace ADONET_Inventory
         {
             var inventory = new Inventory
             {
-                Name = txtNameInv.Text,
+                PetName = txtNameInv.Text,
             };
             _inventoryRepository.Add(inventory);
 

@@ -36,6 +36,10 @@
             txtIDInventory = new TextBox();
             txtNameInv = new TextBox();
             dgvInventory = new DataGridView();
+            label3 = new Label();
+            label4 = new Label();
+            txtColor = new TextBox();
+            txtMakeId = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvInventory).BeginInit();
             SuspendLayout();
             // 
@@ -44,9 +48,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(35, 49);
             label1.Name = "label1";
-            label1.Size = new Size(64, 20);
+            label1.Size = new Size(69, 20);
             label1.TabIndex = 17;
-            label1.Text = "Nombre";
+            label1.Text = "PetName";
             // 
             // label2
             // 
@@ -59,7 +63,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(13, 210);
+            btnAdd.Location = new Point(12, 255);
             btnAdd.Margin = new Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(115, 31);
@@ -70,7 +74,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(192, 210);
+            btnDelete.Location = new Point(198, 255);
             btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(124, 31);
@@ -81,7 +85,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(399, 210);
+            btnUpdate.Location = new Point(399, 255);
             btnUpdate.Margin = new Padding(3, 4, 3, 4);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(113, 31);
@@ -92,7 +96,7 @@
             // 
             // txtIDInventory
             // 
-            txtIDInventory.Location = new Point(163, 115);
+            txtIDInventory.Location = new Point(163, 102);
             txtIDInventory.Margin = new Padding(3, 4, 3, 4);
             txtIDInventory.Name = "txtIDInventory";
             txtIDInventory.Size = new Size(206, 27);
@@ -117,11 +121,49 @@
             dgvInventory.Size = new Size(477, 227);
             dgvInventory.TabIndex = 26;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(35, 212);
+            label3.Name = "label3";
+            label3.Size = new Size(45, 20);
+            label3.TabIndex = 27;
+            label3.Text = "Color";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(35, 159);
+            label4.Name = "label4";
+            label4.Size = new Size(60, 20);
+            label4.TabIndex = 28;
+            label4.Text = "MakeID";
+            // 
+            // txtColor
+            // 
+            txtColor.Location = new Point(163, 196);
+            txtColor.Margin = new Padding(3, 4, 3, 4);
+            txtColor.Name = "txtColor";
+            txtColor.Size = new Size(206, 27);
+            txtColor.TabIndex = 29;
+            // 
+            // txtMakeId
+            // 
+            txtMakeId.Location = new Point(163, 152);
+            txtMakeId.Margin = new Padding(3, 4, 3, 4);
+            txtMakeId.Name = "txtMakeId";
+            txtMakeId.Size = new Size(206, 27);
+            txtMakeId.TabIndex = 30;
+            // 
             // FrmInventory
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(540, 583);
+            Controls.Add(txtMakeId);
+            Controls.Add(txtColor);
+            Controls.Add(label4);
+            Controls.Add(label3);
             Controls.Add(dgvInventory);
             Controls.Add(txtNameInv);
             Controls.Add(txtIDInventory);
@@ -147,5 +189,9 @@
         private TextBox txtIDInventory;
         private TextBox txtNameInv;
         private DataGridView dgvInventory;
+        private Label label3;
+        private Label label4;
+        private TextBox txtColor;
+        private TextBox txtMakeId;
     }
 }

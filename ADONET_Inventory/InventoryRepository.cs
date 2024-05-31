@@ -21,7 +21,7 @@ namespace ADONET_Inventory
             {
                 string query = "INSERT INTO Inventory (Name) VALUES (@Name)";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Name", entity.Name);
+                cmd.Parameters.AddWithValue("@Name", entity.PetName);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -54,7 +54,9 @@ namespace ADONET_Inventory
                         inventory.Add(new Inventory
                         {
                             ID = reader.GetInt32(0),
-                            Name = reader.GetString(1),
+                            MakeId = reader.GetInt32(0),
+                            PetName = reader.GetString(1),
+                            Color = reader.GetString(2),
                             TimeStamp = (byte[])reader["TimeStamp"]
                         });
                     }
@@ -68,7 +70,7 @@ namespace ADONET_Inventory
             Inventory inventory = null;
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Inventory WHERE Id = @Id";
+                string query = "SELECT * FROM Inventory WHERE Id = @Id Where Color = @Color Where MakeID = @MakeId";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", id);
                 conn.Open();
@@ -79,7 +81,9 @@ namespace ADONET_Inventory
                         inventory = new Inventory
                         {
                             ID = reader.GetInt32(0),
-                            Name = reader.GetString(1),
+                            PetName = reader.GetString(1),
+                            MakeId = reader.GetInt32(0),
+                            Color = reader.GetString(2),
                             TimeStamp = (byte[])reader["TimeStamp"]
                         };
                     }
@@ -92,10 +96,12 @@ namespace ADONET_Inventory
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "UPDATE Inventory SET Name = @Name WHERE Id = @Id";
+                string query = "UPDATE Inventory SET Name = @Name WHERE Id = @Id Where Color = @Color Where MakeID = @MakeId";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Name", entity.Name);
+                cmd.Parameters.AddWithValue("@Name", entity.PetName);
                 cmd.Parameters.AddWithValue("@Id", entity.ID);
+                cmd.Parameters.AddWithValue("@Color", entity.Color);
+                cmd.Parameters.AddWithValue("@MakeId", entity.MakeId);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
