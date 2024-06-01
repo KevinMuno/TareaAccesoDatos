@@ -17,48 +17,48 @@ namespace ADONET_Inventory
         }
         public void Add(Inventory entity)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
-                string query = "INSERT INTO Inventory (MakeId) VALUES (@MakeId)";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@MakeId", entity.MakeId);
-                conn.Open();
-                cmd.ExecuteNonQuery();
+                var command = new SqlCommand("INSERT INTO Inventory (MakeID, Color, PetName) VALUES( @MakeID, @Color, @PetName)", connection);
+                command.Parameters.AddWithValue("@MakeId", entity.MakeId);
+                command.Parameters.AddWithValue("@Color", entity.Color);
+                command.Parameters.AddWithValue("@PetName", entity.PetName);
+                connection.Open();
+                command.ExecuteNonQuery();
+
             }
 
         }
 
         public void Delete(int id)
         {
-            using (SqlConnection con = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
-                string query = "DELETE FROM Inventory WHERE Id = @Id";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Id", id);
-                con.Open();
-                cmd.ExecuteNonQuery();
+                var command = new SqlCommand("DELETE FROM Inventory Where ID = @Id", connection);
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public IEnumerable<Inventory> GetAll()
         {
             var inventory = new List<Inventory>();
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using ( var connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Inventory";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                var command = new SqlCommand ("SELECT * FROM Inventory", connection);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         inventory.Add(new Inventory
                         {
-                            ID = reader.GetInt32(0),
-                            MakeId = reader.GetInt32(0),
-                            PetName = reader.GetString(1),
-                            Color = reader.GetString(2),
-                            TimeStamp = (byte[])reader["TimeStamp"]
+                            ID = (int)reader["ID"],
+                            MakeId = (int)reader["MAKEID"],
+                            Color = reader["COLOR"].ToString(),
+                            PetName = reader["PETNAME"].ToString(),
+                            TimeStamp = (byte[])reader["TIMESTAMP"]
                         });
                     }
                 }
@@ -69,23 +69,22 @@ namespace ADONET_Inventory
         public Inventory GetById(int id)
         {
             Inventory inventory = null;
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Inventory WHERE Id = @Id Where Color = @Color Where MakeID = @MakeId";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Id", id);
-                conn.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                var command = new SqlCommand ("SELECT * FROM Inventory WHERE ID = @Id", connection);
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                using (var reader = command.ExecuteReader() )
                 {
                     if (reader.Read())
                     {
                         inventory = new Inventory
                         {
-                            ID = reader.GetInt32(0),
-                            PetName = reader.GetString(1),
-                            MakeId = reader.GetInt32(0),
-                            Color = reader.GetString(2),
-                            TimeStamp = (byte[])reader["TimeStamp"]
+                            ID = (int)reader["ID"],
+                            MakeId = (int)reader["MAKEID"],
+                            Color = reader["COLOR"].ToString(),
+                            PetName = reader["PETNAME"].ToString(),
+                            TimeStamp = (byte[])reader["TIMESTAMP"]
                         };
                     }
                 }
@@ -95,16 +94,16 @@ namespace ADONET_Inventory
 
         public void Update(Inventory entity)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
-                string query = "UPDATE Inventory SET PetName = @PetName WHERE Id = @Id Where Color = @Color Where MakeID = @MakeId";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@PetName", entity.PetName);
-                cmd.Parameters.AddWithValue("@Id", entity.ID);
-                cmd.Parameters.AddWithValue("@Color", entity.Color);
-                cmd.Parameters.AddWithValue("@MakeId", entity.MakeId);
-                conn.Open();
-                cmd.ExecuteNonQuery();
+                var command = new SqlCommand("UPDATE Inventory SET MakeId = @MakeId, Color = @Color, PetName  = @PetName WHERE ID = @Id", connection);
+
+               command.Parameters.AddWithValue("@Id", entity.ID);
+               command.Parameters.AddWithValue("@MakeId", entity.MakeId);
+               command.Parameters.AddWithValue("@Color", entity.Color);
+               command.Parameters.AddWithValue("@PetName", entity.PetName);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
     }

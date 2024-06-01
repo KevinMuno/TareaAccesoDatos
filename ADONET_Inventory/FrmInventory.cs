@@ -21,6 +21,12 @@ namespace ADONET_Inventory
             string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
             _inventoryRepository = new InventoryRepository(connectionString);
             dgvInventory.SelectionChanged += dgvInventory_SelectionChanged;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            dgvInventory.DataSource = _inventoryRepository.GetAll().ToString();
         }
 
         private void dgvInventory_SelectionChanged(object? sender, EventArgs e)
@@ -34,63 +40,42 @@ namespace ADONET_Inventory
         {
             var inventory = new Inventory
             {
+                MakeId = int.Parse(txtIDInventory.Text),
                 PetName = txtNameInv.Text,
-                Color = txtColor.Text,
+                Color = txtColor.Text
                
             };
             _inventoryRepository.Add(inventory);
 
-            LoadInventory();
+            LoadData();
         }
 
-        private void LoadInventory()
-        {
-            dgvInventory.DataSource = _inventoryRepository.GetAll().ToList();
-
-            if (dgvInventory.Columns.Contains("TimeStamp"))
-            {
-                dgvInventory.Columns["TimeStamp"].Visible = false;
-            }
-        }
+        
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvInventory.SelectedRows.Count > 0)
-            {
-                int selectedRowIndex = dgvInventory.SelectedRows[0].Index;
-                int id = Convert.ToInt32(dgvInventory.Rows[selectedRowIndex].Cells["ID"].Value);
-               
-
-                _inventoryRepository.Delete(id);
-                LoadInventory();
-            }
-            else
-            {
-                MessageBox.Show("Porfavor, seleccione la fila a eliminar.");
-            }
+            int id = int.Parse(txtIDInventory.Text);
+            _inventoryRepository.Delete(id);
+            LoadData();
         }
 
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (dgvInventory.SelectedRows.Count > 0)
+            var inventory = new Inventory
             {
-                int selectedRowIndex = dgvInventory.SelectedRows[0].Index;
-                int id = Convert.ToInt32(dgvInventory.Rows[selectedRowIndex].Cells["ID"].Value);
-           
-
-                _inventoryRepository.Delete(id);
-                LoadInventory();
-            }
-            else
-            {
-                MessageBox.Show("Porfavor, seleccione la fila a eliminar.");
-            }
+                ID = int.Parse(txtIDInventory.Text),
+                MakeId = int.Parse(txtMakeId.Text),
+                Color = txtColor.Text,
+                PetName = txtNameInv.Text
+            };
+            _inventoryRepository.Update(inventory);
+            LoadData();
         }
 
         private void frmInventory_Load(object sender, EventArgs e)
         {
-            LoadInventory();
+            LoadData();
 
         }
     }
