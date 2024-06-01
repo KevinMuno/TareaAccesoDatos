@@ -22,6 +22,7 @@ namespace ADONET_Inventory
             _inventoryRepository = new InventoryRepository(connectionString);
             dgvInventory.SelectionChanged += dgvInventory_SelectionChanged;
             LoadData();
+
         }
 
         private void LoadData()
