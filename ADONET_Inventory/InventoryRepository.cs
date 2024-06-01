@@ -19,12 +19,13 @@ namespace ADONET_Inventory
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "INSERT INTO Inventory (Name) VALUES (@Name)";
+                string query = "INSERT INTO Inventory (MakeId) VALUES (@MakeId)";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Name", entity.PetName);
+                cmd.Parameters.AddWithValue("@MakeId", entity.MakeId);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
+
         }
 
         public void Delete(int id)
@@ -96,9 +97,9 @@ namespace ADONET_Inventory
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                string query = "UPDATE Inventory SET Name = @Name WHERE Id = @Id Where Color = @Color Where MakeID = @MakeId";
+                string query = "UPDATE Inventory SET PetName = @PetName WHERE Id = @Id Where Color = @Color Where MakeID = @MakeId";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Name", entity.PetName);
+                cmd.Parameters.AddWithValue("@PetName", entity.PetName);
                 cmd.Parameters.AddWithValue("@Id", entity.ID);
                 cmd.Parameters.AddWithValue("@Color", entity.Color);
                 cmd.Parameters.AddWithValue("@MakeId", entity.MakeId);

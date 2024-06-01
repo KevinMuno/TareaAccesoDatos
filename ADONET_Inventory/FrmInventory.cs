@@ -27,7 +27,7 @@ namespace ADONET_Inventory
         {
             int selectedRowIndex = dgvInventory.SelectedRows[0].Index;
             txtIDInventory.Text = dgvInventory.Rows[selectedRowIndex].Cells["ID"].Value.ToString();
-            txtNameInv.Text = dgvInventory.Rows[selectedRowIndex].Cells["NAME"].Value.ToString();
+            txtNameInv.Text = dgvInventory.Rows[selectedRowIndex].Cells["PETNAME"].Value.ToString();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace ADONET_Inventory
 
         private void LoadInventory()
         {
-            dgvInventory.DataSource = _inventoryRepository.GetAll();
+            dgvInventory.DataSource = _inventoryRepository.GetAll().ToList();
 
             if (dgvInventory.Columns.Contains("TimeStamp"))
             {
@@ -90,7 +90,7 @@ namespace ADONET_Inventory
 
         private void frmInventory_Load(object sender, EventArgs e)
         {
-            LoadInventory(); 
+            LoadInventory();
 
         }
     }
