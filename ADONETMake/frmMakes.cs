@@ -44,18 +44,13 @@ namespace ADONETMake
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (dgvMakes.SelectedRows.Count > 0)
+            var makes = new Makes
             {
-                int selectedRowIndex = dgvMakes.SelectedRows[0].Index;
-                int id = Convert.ToInt32(dgvMakes.Rows[selectedRowIndex].Cells["ID"].Value);
-
-                _makesRepository.Delete(id);
-                LoadMakes();
-            }
-            else
-            {
-                MessageBox.Show("Porfavor, seleccione la fila a eliminar.");
-            }
+                ID = Convert.ToInt32(txtID.Text),
+                Name = txtName.Text
+            };
+            _makesRepository.Update(makes);
+            LoadMakes();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
