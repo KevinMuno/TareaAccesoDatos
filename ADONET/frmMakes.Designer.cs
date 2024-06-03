@@ -34,13 +34,15 @@
             btnActualizar = new Button();
             btnEliminar = new Button();
             dgvMakes = new DataGridView();
+            label2 = new Label();
+            txtId = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvMakes).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(56, 45);
+            label1.Location = new Point(33, 41);
             label1.Name = "label1";
             label1.Size = new Size(78, 32);
             label1.TabIndex = 0;
@@ -48,7 +50,7 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(169, 38);
+            txtName.Location = new Point(117, 41);
             txtName.Name = "txtName";
             txtName.Size = new Size(283, 39);
             txtName.TabIndex = 1;
@@ -93,11 +95,30 @@
             dgvMakes.TabIndex = 5;
             dgvMakes.SelectionChanged += dgvMakes_SelectionChanged;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(435, 42);
+            label2.Name = "label2";
+            label2.Size = new Size(37, 32);
+            label2.TabIndex = 6;
+            label2.Text = "ID";
+            // 
+            // txtId
+            // 
+            txtId.Location = new Point(504, 42);
+            txtId.Name = "txtId";
+            txtId.ReadOnly = true;
+            txtId.Size = new Size(241, 39);
+            txtId.TabIndex = 7;
+            // 
             // frmMakes
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(801, 675);
+            Controls.Add(txtId);
+            Controls.Add(label2);
             Controls.Add(dgvMakes);
             Controls.Add(btnEliminar);
             Controls.Add(btnActualizar);
@@ -106,7 +127,6 @@
             Controls.Add(label1);
             Name = "frmMakes";
             Text = "frmMakes";
-            
             ((System.ComponentModel.ISupportInitialize)dgvMakes).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -120,5 +140,7 @@
         private Button btnActualizar;
         private Button btnEliminar;
         private DataGridView dgvMakes;
+        private Label label2;
+        private TextBox txtId;
     }
 }

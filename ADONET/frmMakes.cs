@@ -48,6 +48,7 @@ namespace ADONET
         {
             var makes = new Makes
             {
+                Id = int.Parse(txtId.Text),
                 Name = txtName.Text
             };
             _makesRepository.Update(makes);
@@ -77,6 +78,7 @@ namespace ADONET
             if (dgvMakes.SelectedRows.Count > 0)
             {
                 int selectedRowIndex = dgvMakes.SelectedRows[0].Index;
+                txtId.Text = dgvMakes.Rows[selectedRowIndex].Cells["Id"].Value.ToString();
                 txtName.Text = dgvMakes.Rows[selectedRowIndex].Cells["Name"].Value.ToString();
             }
         }

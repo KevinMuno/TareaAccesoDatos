@@ -50,6 +50,7 @@ namespace ADONET
         {
             var inventory = new Inventory
             {
+                Id = int.Parse(txtId.Text),
                 MakeId = int.Parse(txtMakeId.Text),
                 Color = txtColor.Text,
                 PetName = txtPetName.Text
@@ -81,6 +82,7 @@ namespace ADONET
             if (dgvInventory.SelectedRows.Count > 0)
             {
                 int selectedRowIndex = dgvInventory.SelectedRows[0].Index;
+                txtId.Text = dgvInventory.Rows[selectedRowIndex].Cells["Id"].Value.ToString();
                 txtMakeId.Text = dgvInventory.Rows[selectedRowIndex].Cells["MakeId"].Value.ToString();
                 txtColor.Text = dgvInventory.Rows[selectedRowIndex].Cells["Color"].Value.ToString();
                 txtPetName.Text = dgvInventory.Rows[selectedRowIndex].Cells["PetName"].Value.ToString();

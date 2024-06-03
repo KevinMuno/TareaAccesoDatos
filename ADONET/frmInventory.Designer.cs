@@ -39,6 +39,8 @@
             btnEliminar = new Button();
             dgvInventory = new DataGridView();
             btnLimpiar = new Button();
+            label4 = new Label();
+            txtId = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvInventory).BeginInit();
             SuspendLayout();
             // 
@@ -92,7 +94,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(569, 16);
+            btnAgregar.Location = new Point(859, 16);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(223, 83);
             btnAgregar.TabIndex = 6;
@@ -102,7 +104,7 @@
             // 
             // btnActualizar
             // 
-            btnActualizar.Location = new Point(569, 212);
+            btnActualizar.Location = new Point(859, 126);
             btnActualizar.Name = "btnActualizar";
             btnActualizar.Size = new Size(223, 83);
             btnActualizar.TabIndex = 7;
@@ -112,7 +114,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(859, 212);
+            btnEliminar.Location = new Point(859, 234);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(223, 83);
             btnEliminar.TabIndex = 8;
@@ -132,7 +134,7 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(859, 16);
+            btnLimpiar.Location = new Point(573, 16);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(223, 83);
             btnLimpiar.TabIndex = 10;
@@ -140,11 +142,30 @@
             btnLimpiar.UseVisualStyleBackColor = true;
             btnLimpiar.Click += btnLimpiar_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(493, 170);
+            label4.Name = "label4";
+            label4.Size = new Size(37, 32);
+            label4.TabIndex = 11;
+            label4.Text = "ID";
+            // 
+            // txtId
+            // 
+            txtId.Location = new Point(548, 170);
+            txtId.Name = "txtId";
+            txtId.ReadOnly = true;
+            txtId.Size = new Size(279, 39);
+            txtId.TabIndex = 12;
+            // 
             // frmInventory
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1117, 801);
+            Controls.Add(txtId);
+            Controls.Add(label4);
             Controls.Add(btnLimpiar);
             Controls.Add(dgvInventory);
             Controls.Add(btnEliminar);
@@ -176,5 +197,7 @@
         private Button btnEliminar;
         private DataGridView dgvInventory;
         private Button btnLimpiar;
+        private Label label4;
+        private TextBox txtId;
     }
 }
