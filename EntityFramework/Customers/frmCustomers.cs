@@ -123,7 +123,7 @@ namespace EntityFramework.Customers
 
         }
 
-      // Evento para que al momento de darle click a una fila aparezcan los datos en los textbox y sea mas facil la interaccion
+        // Evento para que al momento de darle click a una fila aparezcan los datos en los textbox y sea mas facil la interaccion
         private void dgvCustomers_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -145,6 +145,12 @@ namespace EntityFramework.Customers
                 MessageBox.Show($"Error al seleccionar Customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtFirstName.Clear();
+            txtLastName.Clear();
         }
     }
 }

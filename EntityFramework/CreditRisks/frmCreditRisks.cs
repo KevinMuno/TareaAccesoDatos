@@ -127,7 +127,7 @@ namespace EntityFramework.CreditRisks
 
         }
 
-       // Evento para que al momento de darle click a una fila aparezcan los datos en los textbox y sea mas facil la interaccion
+        // Evento para que al momento de darle click a una fila aparezcan los datos en los textbox y sea mas facil la interaccion
         private void dgvCreditRisks_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -150,6 +150,13 @@ namespace EntityFramework.CreditRisks
                 MessageBox.Show($"Error al seleccionar a alguien de CreditRisk: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtCustomerId.Clear();
+            txtFirstName.Clear();
+            txtLastName.Clear();
         }
     }
 }
